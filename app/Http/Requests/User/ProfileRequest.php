@@ -31,6 +31,7 @@ class ProfileRequest extends FormRequest
             'facebook' => 'string',
             'twitter' => 'string',
             'google' => 'string',
+            'image' => 'image',
         ];
     }
 

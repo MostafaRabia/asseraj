@@ -23,6 +23,10 @@ class EditProfileController extends Controller
             $update['password'] = $request->password;
         }
 
+        if ($request->hasFile('image')) {
+            $update['image'] = $request->image->store('images');
+        }
+
         $request->user()->update($update);
     }
 }

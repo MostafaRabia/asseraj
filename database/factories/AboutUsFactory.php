@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Index;
+use App\Models\AboutUs;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class IndexFactory extends Factory
+class AboutUsFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Index::class;
+    protected $model = AboutUs::class;
 
     /**
      * Define the model's default state.

@@ -43,7 +43,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'reads' => 'array',
+        'reads_save' => 'array',
+        'reads_learning' => 'array',
     ];
 
     protected $appends = [

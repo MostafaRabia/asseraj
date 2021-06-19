@@ -15,6 +15,8 @@ class CreateTransferMoneyTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->double('price', 8, 2);
+            $table->boolean('is_done')->default(0);
+            $table->dateTime('done_date')->nullable();
             $table->timestamps();
         });
     }

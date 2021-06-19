@@ -12,4 +12,9 @@ class Payment extends Model
     protected $casts = [
         'created_at' => 'datetime:j/n/Y g:i A',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
