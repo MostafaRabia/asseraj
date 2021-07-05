@@ -15,7 +15,7 @@ class RegisterController extends Controller
 
         $created = User::create($create);
         $created->attachRole('user');
-        event(new Registered($created));
+        // event(new Registered($created));
 
         return response()->json(['status' => 'done']);
     }

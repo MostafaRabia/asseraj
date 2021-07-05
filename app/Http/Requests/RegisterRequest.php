@@ -31,7 +31,7 @@ class RegisterRequest extends FormRequest
             'last_name' => ['required', 'min:2', 'max:30', 'regex:/^[^#%^&*\/()*\\\[\]\'\";|؟,~؛!<>?.=+@{}_$%\d]+$/u'],
             'email' => 'required|email:strict,dns',
             'emailsig' => 'unique:users,emailsig',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|min:8',
             'phone' => ['required', 'regex:/^[+]{0,1}[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/i'],
             'gender' => 'required|boolean',
             'age' => 'required|integer',
@@ -41,6 +41,7 @@ class RegisterRequest extends FormRequest
             'section' => 'nullable|string',
             'reads' => 'nullable|array',
             'reads.*' => 'string',
+            'how_much_save' => 'required|integer',
             'information' => 'nullable|string|min:10',
             'timezone' => 'required|timezone',
         ];

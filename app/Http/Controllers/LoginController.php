@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Traits\CrcemailTrait;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    use CrcemailTrait;
+
     public function __invoke(LoginRequest $r)
     {
         $create = $r->validated();
@@ -23,20 +26,21 @@ class LoginController extends Controller
 
         $user = User::where('emailsig', $emailsig)->first();
         $user->update(['ip' => $r->ip()]);
-        $return = [];
+        // $return = [];
 
         // if (1 == $r->is_from_phone) {
         //     $return['token'] = $user->createToken('login-token')->plainTextToken;
         // }
 
-        $return = array_merge($return, [
+        $return = [
             'roles' => $user->roles()->pluck('name'),
             'permissions' => $user->permissions()->pluck('name'),
             'name' => $user->full_name,
-            'is_email_verified' => $user->email_verified_at,
+            // 'is_email_verified' => $user->email_verified_at,
             'image' => $user->image,
             'id' => $user->id,
-        ]);
+            'token' => $user->createToken('login')->plainTextToken,
+        ];
 
         $r->session()->regenerate();
 

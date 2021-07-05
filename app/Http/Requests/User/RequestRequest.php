@@ -14,7 +14,7 @@ class RequestRequest extends FormRequest
      */
     public function authorize()
     {
-        return !DB::table('requests')->where('user_id', auth()->user()->id)->exists();
+        return !DB::table('requests')->where('user_id', auth()->user()->id)->exists() && !DB::table('rooms')->where('student_id', auth()->user()->id)->where('status', 'open')->exists();
     }
 
     /**

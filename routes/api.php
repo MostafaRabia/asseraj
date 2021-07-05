@@ -22,3 +22,6 @@ Route::post('login', 'LoginController');
 Route::post('/send/password', 'SendResetPasswordController')->middleware('throttle:reset-password');
 Route::post('/reset/password', 'ResetPasswordController');
 Route::post('/email/resend/verification', 'ResendVerificationController')->middleware('auth:sanctum')->name('verification.send');
+
+Route::get('profile', 'ShowProfileController')->middleware('auth:sanctum');
+Route::put('profile', 'EditProfileController')->middleware('auth:sanctum');
