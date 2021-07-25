@@ -25,3 +25,5 @@ Route::post('/email/resend/verification', 'ResendVerificationController')->middl
 
 Route::get('profile', 'ShowProfileController')->middleware('auth:sanctum');
 Route::put('profile', 'EditProfileController')->middleware('auth:sanctum');
+
+Route::put('end/room/{room}','EndRoomController');

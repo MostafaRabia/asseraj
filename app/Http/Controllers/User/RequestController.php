@@ -18,7 +18,11 @@ class RequestController extends Controller
      */
     public function __invoke(RequestRequest $request)
     {
-        ModelsRequest::create(array_merge(['user_id' => auth()->user()->id], $request->all));
+        if ($request->type==="check"){
+            $request->read = $request->user()->reads_save[0];
+        }
+
+        ModelsRequest::create(array_merge(['user_id' => auth()->user()->id], $request->all()));
 
         return response()->json(['status' => 'done']);
     }

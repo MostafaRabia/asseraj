@@ -42,7 +42,7 @@ class LoginController extends Controller
             'token' => $user->createToken('login')->plainTextToken,
         ];
 
-        $r->session()->regenerate();
+        // $r->session()->regenerate();
 
         return response()->json($return);
     }

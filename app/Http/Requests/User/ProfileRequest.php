@@ -3,10 +3,13 @@
 namespace App\Http\Requests\User;
 
 use App\Http\Requests\RegisterRequest;
+use App\Traits\CrcemailTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileRequest extends FormRequest
 {
+    use CrcemailTrait;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,13 +29,14 @@ class ProfileRequest extends FormRequest
     {
         $rules = new RegisterRequest();
 
-        return $rules->rules() + [
+        return [
             'emailsig' => 'unique:users,emailsig,'.auth()->user()->id,
-            'facebook' => 'string',
-            'twitter' => 'string',
-            'google' => 'string',
-            'image' => 'image',
-        ];
+            'facebook' => 'nullable|string',
+            'twitter' => 'nullable|string',
+            'google' => 'nullable|string',
+            'image' => 'nullable|image',
+            'password' => 'nullable',
+        ] + $rules->rules();
     }
 
     public function attributes()

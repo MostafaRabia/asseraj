@@ -15,6 +15,6 @@ class CheckRoomController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Room::where('student_id', auth()->user()->id)->where('status', 'open')->first();
+        return Room::where('student_id', auth()->user()->id)->where('status', 'open')->with('teacher')->first();
     }
 }

@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('country');
             $table->string('state');
             $table->string('city');
+            $table->unsignedTinyInteger('how_much_save')->nullable();
             $table->string('section')->nullable();
             $table->string('image')->nullable();
             $table->json('reads_save')->nullable();

@@ -16,7 +16,8 @@ class EditProfileController extends Controller
      */
     public function __invoke(ProfileRequest $request)
     {
-        $update = $request->except('password');
+        $update = $request->validated();
+        unset($update['image'],$update['password']);
 
         if ($request->has('password') && (null != $request->password || '' != $request->password || !empty($request->password))) {
             $update['password'] = $request->password;

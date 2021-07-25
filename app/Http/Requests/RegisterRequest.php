@@ -39,20 +39,20 @@ class RegisterRequest extends FormRequest
             'state' => 'required|string',
             'city' => 'required|string',
             'section' => 'nullable|string',
-            'reads' => 'nullable|array',
-            'reads.*' => 'string',
+            'reads_save' => 'nullable|array',
+            'reads_save.*' => 'string',
             'how_much_save' => 'required|integer',
             'information' => 'nullable|string|min:10',
             'timezone' => 'required|timezone',
         ];
     }
 
-    public function attributes()
-    {
-        return [
-            'emailsig' => 'email',
-        ];
-    }
+    // public function attributes()
+    // {
+    //     return [
+    //         'emailsig' => 'email',
+    //     ];
+    // }
 
     protected function prepareForValidation()
     {
