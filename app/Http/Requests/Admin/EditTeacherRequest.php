@@ -27,7 +27,7 @@ class EditTeacherRequest extends FormRequest
             'first_name' => ['required', 'min:2', 'max:30', 'regex:/^[^#%^&*\/()*\\\[\]\'\";|؟,~؛!<>?.=+@{}_$%\d]+$/u'],
             'last_name' => ['required', 'min:2', 'max:30', 'regex:/^[^#%^&*\/()*\\\[\]\'\";|؟,~؛!<>?.=+@{}_$%\d]+$/u'],
             'email' => 'required|email:strict,dns',
-            'emailsig' => 'unique:users,emailsig,'.$this->route('teacher')->id ?? 0,
+            'emailsig' => 'unique:users,emailsig,'.optional($this->route('teacher'))->id,
             'password' => 'nullable|min:8',
             'phone' => ['required', 'regex:/^[+]{0,1}[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/i'],
             'gender' => 'required|boolean',
