@@ -13,4 +13,6 @@ class ContactUs extends Model
         'email' => 'encrypt',
         'is_showed' => 'boolean',
     ];
+
+    protected $guarded = [];
 }
