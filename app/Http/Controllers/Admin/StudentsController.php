@@ -35,9 +35,9 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $student)
     {
-        return $user->only([
+        return $student->only([
             'id', 'first_name', 'last_name',
             'gender', 'age', 'country',
             'state', 'city', 'email',
@@ -67,9 +67,9 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $student)
     {
-        Storage::delete($user->image);
-        $user->delete();
+        Storage::delete($student->image);
+        $student->delete();
     }
 }

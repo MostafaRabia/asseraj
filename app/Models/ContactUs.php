@@ -11,5 +11,6 @@ class ContactUs extends Model
 
     protected $casts = [
         'email' => 'encrypt',
+        'is_showed' => 'boolean',
     ];
 }

@@ -49,11 +49,11 @@ class TeachersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $teacher)
     {
-        $user->load('permissions');
+        $teacher->load('permissions');
 
-        return $user->only([
+        return $teacher->only([
             'id', 'first_name', 'last_name',
             'gender', 'age', 'country',
             'state', 'city', 'email',
@@ -72,7 +72,7 @@ class TeachersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(EditTeacherRequest $request, User $user)
+    public function update(EditTeacherRequest $request, User $teacher)
     {
         $update = $request->validated();
         unset($update['password'],$update['id_photo']);
@@ -85,7 +85,7 @@ class TeachersController extends Controller
         if ($request->hasFile('id_photo')) {
             $update['id_photo'] = $request->id_photo->store('ids');
         }
-        $user->update($update);
+        $teacher->update($update);
 
         return response()->json(['status' => 'done']);
     }
@@ -97,9 +97,9 @@ class TeachersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $teacher)
     {
-        Storage::delete($user->image);
-        $user->delete();
+        Storage::delete($teacher->image);
+        $teacher->delete();
     }
 }

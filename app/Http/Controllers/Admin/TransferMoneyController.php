@@ -45,12 +45,12 @@ class TransferMoneyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TransferMoney $transferMoney)
+    public function update(Request $request, TransferMoney $money)
     {
         $update['is_done'] = $request->is_done;
         $update['done_date'] = (1 == $request->is_done) ? now() : null;
 
-        $transferMoney->update($update);
+        $money->update($update);
     }
 
     /**

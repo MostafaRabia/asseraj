@@ -15,7 +15,7 @@ class ShowRequestsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $get_reads = $request->user()->reads_save;
+        $get_reads = array_merge($request->user()->reads_save,$request->user()->reads_learning);
 
         return ModelsRequest::where(function ($query) use ($get_reads) {
             $query->whereIn('read', $get_reads);
