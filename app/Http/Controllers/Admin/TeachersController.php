@@ -37,7 +37,8 @@ class TeachersController extends Controller
         if ($request->hasFile('id_photo')) {
             $create['id_photo'] = $request->id_photo->store('ids');
         }
-        User::create($create);
+
+        User::create($create)->attachRole('teacher');
 
         return response()->json(['status' => 'done']);
     }
