@@ -38,6 +38,8 @@ class TeachersController extends Controller
             $create['id_photo'] = $request->id_photo->store('ids');
         }
 
+        $create['ip'] = $request->ip();
+
         User::create($create)->attachRole('teacher');
 
         return response()->json(['status' => 'done']);
