@@ -10,7 +10,7 @@ class ContactUs extends Model
     use HasFactory;
 
     protected $casts = [
-        'email' => 'encrypt',
+        'email' => 'encrypted',
         'is_showed' => 'boolean',
     ];
 
