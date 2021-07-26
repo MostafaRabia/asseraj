@@ -39,6 +39,7 @@ class TeachersController extends Controller
         }
 
         $create['ip'] = $request->ip();
+        $create['timezone'] = $request->user()->timezone;
 
         User::create($create)->attachRole('teacher');
 

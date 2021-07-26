@@ -48,7 +48,6 @@ class EditTeacherRequest extends FormRequest
             'name_of_bank' => 'nullable',
             'national_id' => 'nullable',
             'id_photo' => 'nullable|image',
-            'timezone' => 'required|timezone',
         ];
     }
 }
