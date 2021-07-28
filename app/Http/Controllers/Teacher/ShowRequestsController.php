@@ -19,6 +19,6 @@ class ShowRequestsController extends Controller
 
         return ModelsRequest::where(function ($query) use ($get_reads) {
             $query->whereIn('read', $get_reads);
-        })->simplePaginate(5);
+        })->with('student')->simplePaginate(5);
     }
 }

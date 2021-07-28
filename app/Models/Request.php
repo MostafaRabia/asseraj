@@ -10,4 +10,9 @@ class Request extends Model
     use HasFactory;
 
     public $guarded = [];
+
+    public function student()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
