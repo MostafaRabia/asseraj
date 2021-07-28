@@ -9,6 +9,8 @@ class Room extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     protected $casts = [
         'created_at' => 'datetime:j/n/Y g:i A',
     ];
