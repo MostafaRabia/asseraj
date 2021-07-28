@@ -36,7 +36,7 @@ class CountTimeInRooms extends Command
      */
     public function handle()
     {
-        DB::table('rooms')->where('status', 'open')->whereRaw('updated_at >= NOW() - INTERVAL 1 MINUTE')->lockForUpdate()->increment('time', 1, ['updated_at' => now()]);
+        DB::table('rooms')->where('status', 'open')->lockForUpdate()->increment('time', 1);
 
         return 0;
     }
