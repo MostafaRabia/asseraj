@@ -18,6 +18,7 @@ Route::get('logout', 'LogoutController@logout')->middleware('auth:sanctum');
 ;
 
 Route::post('register', 'RegisterController');
+Route::post('register/teacher', 'RegisterTeacherController');
 Route::post('login', 'LoginController');
 // Route::post('/send/password', 'SendResetPasswordController')->middleware('throttle:reset-password');
 // Route::post('/reset/password', 'ResetPasswordController');
