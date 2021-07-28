@@ -26,7 +26,7 @@ Route::post('login', 'LoginController');
 Route::get('profile', 'ShowProfileController')->middleware('auth:sanctum');
 Route::put('profile', 'EditProfileController')->middleware('auth:sanctum');
 
-Route::put('end/room/{room}','EndRoomController');
+Route::put('end/room/{room}','EndRoomController')->middleware('auth:sanctum');
 
 Route::post('contact/us','ContactUsController')->middleware('throttle:contact-us');
 
