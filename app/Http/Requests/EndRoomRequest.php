@@ -13,7 +13,7 @@ class EndRoomRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->route('room')->teacher_id == auth()->user()->id || $this->route('room')->student_id == auth()->user()->id;
+        return $this->route('room')->teacher_id == $this->user()->id || $this->route('room')->student_id == $this->user()->id;
     }
 
     /**
