@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class SuperVisorRequest extends FormRequest
 {
     /**
@@ -24,7 +24,7 @@ class SuperVisorRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
+            'email' => Rule::requiredIf(! isset($this->supervisor)),
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,name',
         ];

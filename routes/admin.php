@@ -2,17 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('about/us','AboutUsController');
+$exp = 'ability:admin';
+
+Route::group(['middleware'=>$exp.',outer_pages'],function(){
+    Route::apiResource('about/us','AboutUsController');
+
+    Route::apiResource('records','RecordsController');
+
+    Route::apiResource('slides','SlidesController');
+});
 
 Route::get('contact/us','GetContactUsController');
 
 Route::get('notifications','GetNotificationsController');
 
 Route::get('payments','PaymentsController');
-
-Route::apiResource('records','RecordsController');
-
-Route::apiResource('slides','SlidesController');
 
 Route::apiResource('students','StudentsController');
 

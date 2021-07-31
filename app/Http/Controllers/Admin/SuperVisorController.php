@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SuperVisorRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SuperVisorController extends Controller
 {
@@ -44,9 +45,9 @@ class SuperVisorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $supervisor)
     {
-        //
+        return $supervisor->allPermissions();
     }
 
     /**
@@ -56,9 +57,13 @@ class SuperVisorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SuperVisorRequest $request, User $supervisor)
     {
-        //
+        if (! $supervisor->hasRole('supervisor')) {
+            $supervisor->attachRole('supervisor');
+        }
+
+        $supervisor->syncPermissions($request->permissions);
     }
 
     /**
@@ -67,8 +72,9 @@ class SuperVisorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $supervisor)
     {
-        //
+        DB::table('permission_user')->where('user_id', $supervisor->id)->delete();
+        $supervisor->detachRole('supervisor');
     }
 }

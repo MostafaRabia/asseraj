@@ -29,6 +29,7 @@ class PayWithVCRequest extends FormRequest
             'price' => 'required',
             'minutes' => 'required',
             'photo' => 'required|image',
+            'phone' => 'required',
         ];
     }
 
