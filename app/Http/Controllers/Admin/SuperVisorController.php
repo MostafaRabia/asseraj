@@ -19,7 +19,7 @@ class SuperVisorController extends Controller
     {
         return User::select([
             'first_name', 'last_name', 'id'
-        ])->whereRoleIs('supervisot')->with('permissions')->get();
+        ])->whereRoleIs('supervisor')->with('permissions')->get();
     }
 
     /**
