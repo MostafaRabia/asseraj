@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 $exp = 'ability:admin';
 
-Route::group(['middleware'=>$exp.',outer_pages'],function(){
+Route::get('notifications','GetNotificationsController');
+
+Route::group(['middleware'=>[$exp.',outer_pages']],function(){
     Route::apiResource('about/us','AboutUsController');
 
     Route::apiResource('records','RecordsController');
@@ -12,16 +14,20 @@ Route::group(['middleware'=>$exp.',outer_pages'],function(){
     Route::apiResource('slides','SlidesController');
 });
 
-Route::get('contact/us','GetContactUsController');
+Route::group(['middleware'=>[$exp.',contact_us']],function(){
+    Route::get('contact/us','GetContactUsController');
 
-Route::get('notifications','GetNotificationsController');
+    Route::put('showed/contact/{us}','UpdateContactUsToShowedController');
+});
 
-Route::get('payments','PaymentsController');
+Route::group(['middleware'=>[$exp.',transfer_money']],function(){
+    Route::get('payments','PaymentsController');
 
-Route::apiResource('students','StudentsController');
+    Route::apiResource('transfer/money','TransferMoneyController');
+});
 
-Route::apiResource('teachers','TeachersController');
+Route::apiResource('students','StudentsController')->middleware($exp.',students');
 
-Route::apiResource('transfer/money','TransferMoneyController');
+Route::apiResource('teachers','TeachersController')->middleware($exp.',teachers');
 
-Route::put('showed/contact/{us}','UpdateContactUsToShowedController');
+Route::apiResource('supervisor','SuperVisorController')->middleware($exp.',permissions');
