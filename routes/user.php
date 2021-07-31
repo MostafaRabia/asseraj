@@ -9,3 +9,5 @@ Route::get('logs/room', 'RoomLogController');
 Route::get('logs/payment', 'PaymentLogController');
 
 Route::get('check/room', 'CheckRoomController');
+
+Route::post('payment/vfcash','PayWithVCController');
