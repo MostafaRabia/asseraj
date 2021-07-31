@@ -49,8 +49,10 @@ class RouteServiceProvider extends ServiceProvider
 
             $names = ['admin', 'user', 'teacher'];
             for ($i = 0; $i < count($names); ++$i) {
+                $roles = 'admin' === $names[$i] ? 'admin|supervisor' : $names[$i];
+
                 Route::prefix($names[$i])
-                    ->middleware(['auth:sanctum', 'role:'.$names[$i], 'throttle:'.$names[$i], $names[$i], 'verified'])
+                    ->middleware(['auth:sanctum', 'role:'.$roles, 'throttle:'.$names[$i], $names[$i], 'verified'])
                     ->namespace($this->namespace.'\\'.ucfirst($names[$i]))
                     ->as($names[$i].'.')
                     ->group(base_path('routes/'.$names[$i].'.php'))

@@ -50,7 +50,7 @@ class VCController extends Controller
      */
     public function update(Request $request, Payment $cash)
     {
-        //
+        $cash->update(['status'=>$request->status,'price'=>$request->price]);
     }
 
     /**
@@ -59,8 +59,8 @@ class VCController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Payment $cash)
     {
-        //
+        $cash->delete();
     }
 }

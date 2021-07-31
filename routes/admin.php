@@ -24,6 +24,8 @@ Route::group(['middleware'=>[$exp.',transfer_money']],function(){
     Route::get('payments','PaymentsController');
 
     Route::apiResource('transfer/money','TransferMoneyController');
+
+    Route::apiResource('vf/cash','VCController');
 });
 
 Route::apiResource('students','StudentsController')->middleware($exp.',students');
