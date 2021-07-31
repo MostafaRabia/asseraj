@@ -25,6 +25,7 @@ class PayWithVCRequest extends FormRequest
     public function rules()
     {
         return [
+            'plan_id' => 'required|exists:plans,id',
             'type' => 'required|in:vf cash',
             'price' => 'required',
             'minutes' => 'required',

@@ -19,4 +19,9 @@ class Payment extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function plan()
+    {
+        return $this->hasOne(Plan::class, 'id', 'plan_id');
+    }
 }
