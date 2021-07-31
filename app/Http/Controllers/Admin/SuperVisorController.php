@@ -35,6 +35,7 @@ class SuperVisorController extends Controller
         }
 
         $user->attachRole('supervisor');
+        $user->syncPermissions($request->permissions);
     }
 
     /**

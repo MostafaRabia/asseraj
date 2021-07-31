@@ -25,6 +25,8 @@ class SuperVisorRequest extends FormRequest
     {
         return [
             'email' => 'required',
+            'permissions' => 'required|array',
+            'permissions.*' => 'exists:permissions,name',
         ];
     }
 }
