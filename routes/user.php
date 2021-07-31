@@ -11,3 +11,5 @@ Route::get('logs/payment', 'PaymentLogController');
 Route::get('check/room', 'CheckRoomController');
 
 Route::post('payment/vfcash','PayWithVCController');
+
+Route::get('plans','GetPlansController');
