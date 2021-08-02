@@ -42,6 +42,7 @@ class EndRoomController extends Controller
 
         if ($user->hasRole('teacher')) {
             $user->increment('minutes', $room->time);
+            $user->increment('money', ($room->time * $user->price_of_minute));
         } else {
             if ($room->time >= $user->minutes) {
                 $user->update(['minutes' => 0]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VCController extends Controller
@@ -51,6 +52,10 @@ class VCController extends Controller
     public function update(Request $request, Payment $cash)
     {
         $cash->update(['status'=>$request->status,'price'=>$request->price]);
+
+        if ($request->status==="accepted"){
+            User::where('id',$cash->user_id)->update(['minutes'=>$cash->minutes]);
+        }
     }
 
     /**

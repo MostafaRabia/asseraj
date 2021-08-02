@@ -21,6 +21,10 @@ class PermissionsSeed extends Seeder
             ['name' => 'transfer_money'],
             ['name' => 'contact_us'],
             ['name' => 'permissions'],
+            ['name' => 'show_in_saves'],
+            ['name' => 'show_in_teachers'],
+            ['name' => 'work_in_qra2at'],
+            ['name' => 'work_in_save'],
         ]);
     }
 }

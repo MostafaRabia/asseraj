@@ -13,3 +13,5 @@ Route::get('check/room', 'CheckRoomController');
 Route::post('payment/vfcash','PayWithVCController');
 
 Route::get('plans','GetPlansController');
+
+Route::delete('request/{request}','DeleteRequestController');
