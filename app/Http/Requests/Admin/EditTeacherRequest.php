@@ -50,6 +50,7 @@ class EditTeacherRequest extends FormRequest
             'id_photo' => 'nullable|image',
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,name',
+            'description' => 'required',
         ];
     }
 }

@@ -32,3 +32,5 @@ Route::put('end/room/{room}','EndRoomController')->middleware('auth:sanctum');
 Route::post('contact/us','ContactUsController')->middleware('throttle:contact-us');
 
 Route::get('index','GetIndexPageController');
+
+Route::get('teachers','GetTeachersController');
