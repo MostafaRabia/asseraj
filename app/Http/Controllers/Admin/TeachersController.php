@@ -27,7 +27,7 @@ class TeachersController extends Controller
     public function store(EditTeacherRequest $request)
     {
         $create = $request->validated();
-        unset($create['password'],$create['id_photo']);
+        unset($create['password'],$create['id_photo'],$create['permissions']);
 
         if ($request->has('password') && (null != $request->password || '' != $request->password || !empty($request->password))) {
             $create['password'] = $request->password;
@@ -41,7 +41,10 @@ class TeachersController extends Controller
         $create['ip'] = $request->ip();
         $create['timezone'] = $request->user()->timezone;
 
-        User::create($create)->attachRole('teacher');
+        $teacher = User::create($create);
+        $teacher->attachRole('teacher');
+        $teacher->syncPermissions($request->permissions);
+
 
         return response()->json(['status' => 'done']);
     }
@@ -79,7 +82,7 @@ class TeachersController extends Controller
     public function update(EditTeacherRequest $request, User $teacher)
     {
         $update = $request->validated();
-        unset($update['password'],$update['id_photo']);
+        unset($create['password'],$create['id_photo'],$create['permissions']);
 
         if ($request->has('password') && (null != $request->password || '' != $request->password || !empty($request->password))) {
             $update['password'] = $request->password;
@@ -90,6 +93,7 @@ class TeachersController extends Controller
             $update['id_photo'] = $request->id_photo->store('ids');
         }
         $teacher->update($update);
+        $teacher->syncPermissions($request->permissions);
 
         return response()->json(['status' => 'done']);
     }
