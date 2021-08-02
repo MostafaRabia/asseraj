@@ -60,16 +60,7 @@ class TeachersController extends Controller
     {
         $teacher->load('permissions');
 
-        return $teacher->only([
-            'id', 'first_name', 'last_name',
-            'gender', 'age', 'country',
-            'state', 'city', 'email',
-            'phone', 'reads_save', 'reads_learning',
-            'price_of_minute', 'from', 'to',
-            'vf_cash', 'bank_account', 'name_of_bank',
-            'national_id', 'id_photo',
-            'facebook', 'twitter', 'google',
-        ]);
+        return $teacher;
     }
 
     /**
