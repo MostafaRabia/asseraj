@@ -18,7 +18,7 @@ class SuperVisorController extends Controller
     public function index()
     {
         return User::select([
-            'first_name', 'last_name', 'id'
+            'first_name', 'last_name', 'id', 'email'
         ])->whereRoleIs('supervisor')->with('permissions')->get();
     }
 
