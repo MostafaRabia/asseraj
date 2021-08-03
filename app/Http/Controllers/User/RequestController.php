@@ -24,6 +24,6 @@ class RequestController extends Controller
 
         ModelsRequest::create(array_merge(['user_id' => auth()->user()->id, 'read'=>$read], $request->all()));
 
-        return response()->json(['status' => 'done']);
+        return response()->json(['status' => 'done','request'=>$request]);
     }
 }
