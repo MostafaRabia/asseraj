@@ -73,7 +73,7 @@ class TeachersController extends Controller
     public function update(EditTeacherRequest $request, User $teacher)
     {
         $update = $request->validated();
-        unset($create['password'],$create['id_photo'],$create['permissions']);
+        unset($update['password'],$update['id_photo'],$update['permissions']);
 
         if ($request->has('password') && (null != $request->password || '' != $request->password || !empty($request->password))) {
             $update['password'] = $request->password;
