@@ -9,6 +9,8 @@ class TransferMoney extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $appends = ['created_at','done_date'];
 
     public function getCreatedAtAttribute()
