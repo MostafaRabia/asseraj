@@ -22,8 +22,8 @@ class RequestController extends Controller
             $read = $request->user()->reads_save[0];
         }
 
-        ModelsRequest::create(array_merge(['user_id' => auth()->user()->id, 'read'=>$read], $request->all()));
+        $created = ModelsRequest::create(array_merge(['user_id' => auth()->user()->id, 'read'=>$read], $request->all()));
 
-        return response()->json(['status' => 'done','request'=>$request]);
+        return response()->json(['status' => 'done','request' => $created]);
     }
 }
