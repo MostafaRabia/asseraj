@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\TransferMoney;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransferMoneyController extends Controller
@@ -49,6 +50,10 @@ class TransferMoneyController extends Controller
     {
         $update['is_done'] = $request->is_done;
         $update['done_date'] = (1 == $request->is_done) ? now() : null;
+
+        if ($request->is_done == 1){
+            User::where('id',$money->user_id)->update(['money'=>0]);
+        }
 
         $money->update($update);
     }

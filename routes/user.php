@@ -15,3 +15,5 @@ Route::post('payment/vfcash','PayWithVCController');
 Route::get('plans','GetPlansController');
 
 Route::delete('request/{request}','DeleteRequestController');
+
+Route::get('last/teachers','GetLastTeachersController');
