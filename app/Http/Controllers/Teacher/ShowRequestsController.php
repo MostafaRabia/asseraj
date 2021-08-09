@@ -32,7 +32,7 @@ class ShowRequestsController extends Controller
         return ModelsRequest::where(function ($query) use ($get_reads) {
             $query->whereIn('read', $get_reads);
         })
-        ->with('student')
+        ->with('student:id,first_name,last_name,image')
         ->whereIn('type',$columns)
         ->simplePaginate(5);
     }
