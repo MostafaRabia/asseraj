@@ -7,6 +7,7 @@ Route::group(['middleware'=>'is_active_teacher'],function(){
     Route::get('logs/room','RoomLogController');
     Route::get('check/room', 'CheckRoomController');
     Route::get('student/reports/{student}','GetStudentReportsController');
+    Route::get('check/vector/request','CheckIfThereVectorRequestController');
 
     Route::put('accept/request/{model_request}','AcceptRequestController');
 

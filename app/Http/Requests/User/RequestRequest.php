@@ -28,6 +28,7 @@ class RequestRequest extends FormRequest
             'type' => 'required|in:save,check,learn',
             'info' => 'nullable|string|min:2',
             'read' => 'required_if:type,learn',
+            'teacher_id' => 'nullable|exists:users,id',
         ];
     }
 
