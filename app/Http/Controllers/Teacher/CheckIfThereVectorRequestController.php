@@ -16,6 +16,6 @@ class CheckIfThereVectorRequestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return ModelsRequest::where('teacher_id',$request->user()->id)->get();
+        return ModelsRequest::where('teacher_id',$request->user()->id)->with('student:id,image,first_name,last_name')->get();
     }
 }
