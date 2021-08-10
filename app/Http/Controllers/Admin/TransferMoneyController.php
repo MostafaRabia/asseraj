@@ -52,7 +52,7 @@ class TransferMoneyController extends Controller
         $update['done_date'] = (1 == $request->is_done) ? now() : null;
 
         if ($request->is_done == 1){
-            User::where('id',$money->user_id)->update(['money'=>0]);
+            User::where('id',$money->user_id)->decrement('money',$money->price);
         }
 
         $money->update($update);
