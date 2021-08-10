@@ -13,5 +13,5 @@ Route::group(['middleware'=>'is_active_teacher'],function(){
 
     Route::post('request/my/money','RequestMoneyController');
 
-    Route::delete('requset/{request}','DeleteRequestController');
+    Route::delete('requset/{request}','CancelRequestController');
 });
