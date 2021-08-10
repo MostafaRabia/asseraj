@@ -34,3 +34,5 @@ Route::post('contact/us','ContactUsController')->middleware('throttle:contact-us
 Route::get('index','GetIndexPageController');
 
 Route::get('teachers','GetTeachersController');
+
+Route::put('update/last/seen','UpdateLastSeenController')->middleware('auth:sanctum');
