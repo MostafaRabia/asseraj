@@ -16,6 +16,6 @@ class DeleteRequestController extends Controller
      */
     public function __invoke(Request $r, ModelsRequest $request)
     {
-        $request->delete();
+        ModelsRequest::where('user_id',$r->user()->id)->delete();
     }
 }
