@@ -35,3 +35,5 @@ Route::apiResource('teachers','TeachersController')->middleware($exp.',teachers'
 Route::apiResource('supervisor','SuperVisorController')->middleware($exp.',permissions');
 
 Route::get('calc/money','CalcMoneyController');
+
+Route::get('logs/room','RoomLogController');
