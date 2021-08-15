@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Teacher;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Room;
 use Illuminate\Http\Request;
-
 class RoomLogController extends Controller
 {
     /**
@@ -15,6 +14,11 @@ class RoomLogController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Room::with(['student:id,first_name,last_name','teacher:id,first_name,last_name'])->paginate(7);
+        $arr = [
+            'teacher' => 'teacher_id',
+            'student' => 'student_id'
+        ];
+
+        $rooms = Room::where($arr[$request->type],$request->user_id)->with(['student:id,first_name,last_name','teacher:id,first_name,last_name'])->paginate(7);
     }
 }
