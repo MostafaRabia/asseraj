@@ -51,6 +51,8 @@ class EditTeacherRequest extends FormRequest
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,name',
             'description' => 'required',
+            'languages' => 'required|array',
+            'languages.*' => 'string',
         ];
     }
 }

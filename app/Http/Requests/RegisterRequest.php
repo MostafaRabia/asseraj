@@ -44,6 +44,8 @@ class RegisterRequest extends FormRequest
             'how_much_save' => 'required|integer',
             'information' => 'nullable|string|min:10',
             'timezone' => 'required|timezone',
+            'languages' => 'required|array',
+            'languages.*' => 'string',
         ];
     }
 

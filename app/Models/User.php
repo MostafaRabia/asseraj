@@ -46,6 +46,7 @@ class User extends Authenticatable
         'reads_save' => 'array',
         'reads_learning' => 'array',
         'gender' => 'integer',
+        'languages' => 'array',
     ];
 
     protected $appends = [

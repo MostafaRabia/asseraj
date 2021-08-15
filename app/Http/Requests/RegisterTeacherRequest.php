@@ -43,6 +43,8 @@ class RegisterTeacherRequest extends FormRequest
             'reads_save.*' => 'string',
             'information' => 'nullable|string|min:10',
             'timezone' => 'required|timezone',
+            'languages' => 'required|array',
+            'languages.*' => 'string',
         ];
     }
 

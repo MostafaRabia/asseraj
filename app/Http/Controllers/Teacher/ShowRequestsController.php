@@ -35,6 +35,9 @@ class ShowRequestsController extends Controller
         ->with('student:id,first_name,last_name,image')
         ->whereIn('type',$columns)
         ->orderBy('user_id','asc')
+        ->whereHas('student',function($q) use ($request){
+            $q->where('gender',$request->user()->gender);
+        })
         ->simplePaginate(5);
     }
 }
