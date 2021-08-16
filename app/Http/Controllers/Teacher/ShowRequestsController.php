@@ -17,6 +17,7 @@ class ShowRequestsController extends Controller
     {
         $teacher = $request->user();
         $get_reads = array_merge($teacher->reads_save ?: [],$teacher->reads_learning ?: []);
+        $languages = $teacher->languages ?: [];
         $permissions = [
             'work_in_qra2at' => 'learn',
             'work_in_save' => 'check',
@@ -34,6 +35,7 @@ class ShowRequestsController extends Controller
         })
         ->with('student:id,first_name,last_name,image')
         ->whereIn('type',$columns)
+        ->whereIn('languages',$languages)
         ->orderBy('user_id','asc')
         ->whereHas('student',function($q) use ($request){
             $q->where('gender',$request->user()->gender);

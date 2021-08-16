@@ -18,11 +18,12 @@ class RequestController extends Controller
      */
     public function __invoke(RequestRequest $request)
     {
+        $language = $request->user()->languages[0];
         if ($request->type==="check"){
             $read = $request->user()->reads_save[0];
         }
 
-        $created = ModelsRequest::create(array_merge(['user_id' => auth()->user()->id, 'read'=>$read], $request->all()));
+        $created = ModelsRequest::create(array_merge(['user_id' => auth()->user()->id, 'read'=>$read, 'languages'=>$language], $request->all()));
 
         return response()->json(['status' => 'done','request' => $created]);
     }
