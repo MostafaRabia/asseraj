@@ -17,6 +17,6 @@ class RegisterController extends Controller
         $created->attachRole('user');
         // event(new Registered($created));
 
-        return response()->json(['status' => 'done','token'=>$created->createToken('login')->plainTextToken,'name'=>$created->full_name,'image'=>$created->image]);
+        return response()->json(['status' => 'done','token'=>$created->createToken('login')->plainTextToken,'name'=>$created->full_name,'image'=>$created->image, 'roles'=>$created->roles()->pluck('name')]);
     }
 }
