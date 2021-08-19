@@ -32,11 +32,11 @@ class EndRoomController extends Controller
         $room->update($update);
 
         if (0 != $request->teacher_rate) {
-            UpdateRate::dispatch('teacher_id', $room->teacher_id);
+            UpdateRate::dispatch('teacher_id', $room->teacher_id, 'teacher_rate');
         }
 
         if (0 != $request->student_rate) {
-            UpdateRate::dispatch('student_id', $room->student_id);
+            UpdateRate::dispatch('student_id', $room->student_id, 'student_rate');
         }
 
         $student = User::find($room->student_id);
