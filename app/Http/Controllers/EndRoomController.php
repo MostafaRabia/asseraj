@@ -16,6 +16,7 @@ class EndRoomController extends Controller
      */
     public function __invoke(EndRoomRequest $request, Room $room)
     {
+        $user = $request->user();
         $arr = [
             'teacher_report',
             'teacher_rate',
@@ -31,12 +32,16 @@ class EndRoomController extends Controller
 
         $room->update($update);
 
-        if (0 != $request->teacher_rate) {
-            UpdateRate::dispatch('teacher_id', $room->teacher_id, 'teacher_rate');
+        if ($user->hasRole('user')){
+            if (0 != $request->teacher_rate) {
+                UpdateRate::dispatch('teacher_id', $room->teacher_id, 'teacher_rate');
+            }
         }
 
-        if (0 != $request->student_rate) {
-            UpdateRate::dispatch('student_id', $room->student_id, 'student_rate');
+        if ($user->hasRole('teacher')) {
+            if (0 != $request->student_rate) {
+                UpdateRate::dispatch('student_id', $room->student_id, 'student_rate');
+            }
         }
 
         $student = User::find($room->student_id);
