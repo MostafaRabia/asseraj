@@ -26,9 +26,10 @@ class LoginController extends Controller
             if (!Auth::attempt($login)) {
                 return response()->json(['error' => 'email or password is invalid.'], 422);
             }
+
+            $user = User::where('emailsig', $emailsig)->first();
         }
 
-        $user = User::where('emailsig', $emailsig)->first();
         $user->update(['ip' => $r->ip()]);
         // $return = [];
 
