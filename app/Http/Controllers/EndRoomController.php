@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EndRoomRequest;
 use App\Jobs\UpdateRate;
 use App\Models\Room;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class EndRoomController extends Controller
 {
@@ -16,7 +16,6 @@ class EndRoomController extends Controller
      */
     public function __invoke(EndRoomRequest $request, Room $room)
     {
-        $user = $request->user();
         $arr = [
             'teacher_report',
             'teacher_rate',
@@ -32,23 +31,24 @@ class EndRoomController extends Controller
 
         $room->update($update);
 
-        if ($request->has('teacher_rate') && 0 != $request->teacher_rate) {
+        if (0 != $request->teacher_rate) {
             UpdateRate::dispatch('teacher_id', $room->teacher_id);
         }
 
-        if ($request->has('student_rate') && 0 != $request->student_rate) {
+        if (0 != $request->student_rate) {
             UpdateRate::dispatch('student_id', $room->student_id);
         }
 
-        if ($user->hasRole('teacher')) {
-            $user->increment('minutes', $room->time);
-            $user->increment('money', ($room->time * $user->price_of_minute));
+        $student = User::find($room->student_id);
+        $teacher = User::find($room->teacher_id);
+
+        if ($room->time >= $student->minutes) {
+            $student->update(['minutes' => 0]);
         } else {
-            if ($room->time >= $user->minutes) {
-                $user->update(['minutes' => 0]);
-            } else {
-                $user->decrement('minutes', $room->time);
-            }
+            $student->decrement('minutes', $room->time);
         }
+
+        $teacher->increment('minutes', $room->time);
+        $teacher->increment('money', ($room->time * $teacher->price_of_minute));
     }
 }
