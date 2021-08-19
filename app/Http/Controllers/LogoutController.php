@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class LogoutController extends Controller
 {
     public function logout(Request $r){
-        $r->user()->currentAccessToken()->delete();
+        if (auth()->check()) {
+            $r->user()->currentAccessToken()->delete();
+        }
     }
 }
