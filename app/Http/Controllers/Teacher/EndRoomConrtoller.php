@@ -16,8 +16,8 @@ class EndRoomConrtoller extends Controller
      */
     public function __invoke(Request $request,$sid)
     {
-        $id = 'AC8226bffaccf865f94ede8f3cd969afd3';
-        $token = '00020b48427a874c4e309c8cb76d4cbf';
+        $id = config('twilio.id');
+        $token = config('twilio.token');
         $twilio = new Client($id, $token);
         
         $room = $twilio->video->v1->rooms($sid)
