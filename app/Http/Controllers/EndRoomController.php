@@ -23,7 +23,7 @@ class EndRoomController extends Controller
         ];
 
         foreach ($arr as $input) {
-            if ($request->has($input) && (null != $request->input || '' != $request->input || !empty($request->input))) {
+            if ($request->has($input)) {
                 $update[$input] = $request->{$input};
             }
         }
