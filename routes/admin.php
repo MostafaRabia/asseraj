@@ -37,4 +37,4 @@ Route::apiResource('supervisor','SuperVisorController')->middleware($exp.',permi
 Route::get('calc/money','CalcMoneyController');
 
 Route::get('logs/room','RoomLogController');
-Route::get('logs/payment','PaymentLogController');
+Route::get('logs/payments','PaymentLogController');
