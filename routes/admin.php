@@ -14,7 +14,7 @@ Route::group(['middleware'=>[$exp.',outer_pages']],function(){
     Route::apiResource('slides','SlidesController');
 });
 
-Route::group(['middleware'=>[$exp.',contact_us']],function(){
+Route::group(['middleware'=>[$exp.',contact_us'],'as'=>'contact'],function(){
     Route::apiResource('contact/us','ContactUsController');
 
     Route::put('showed/contact/{us}','UpdateContactUsToShowedController');
