@@ -36,3 +36,5 @@ Route::get('index','GetIndexPageController');
 Route::get('teachers','GetTeachersController');
 
 Route::put('update/last/seen','UpdateLastSeenController')->middleware('auth:sanctum');
+
+Route::get('permissions','GetRolesAndPermissions')->middleware('auth:sanctum');
