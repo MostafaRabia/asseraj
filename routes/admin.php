@@ -15,7 +15,7 @@ Route::group(['middleware'=>[$exp.',outer_pages']],function(){
 });
 
 Route::group(['middleware'=>[$exp.',contact_us']],function(){
-    Route::get('contact/us','GetContactUsController');
+    Route::apiResource('contact/us','ContactUsController');
 
     Route::put('showed/contact/{us}','UpdateContactUsToShowedController');
 });
