@@ -33,7 +33,7 @@ class ContactUsFromUserRequest extends FormRequest
     {
         $this->merge([
             'user_id' => $this->user()->id,
-            'name' => $this->user()->name,
+            'name' => $this->user()->full_name,
             'email' => $this->user()->email,
             'phone' => $this->user()->phone,
             'message' => links_newlines_text($this->message),
