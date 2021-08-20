@@ -42,4 +42,5 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::get('permissions','GetRolesAndPermissions');
 
     Route::apiResource('user/contact/us','ContactUsFromUserController');
+    Route::post('comment/contact/{us}','CommentToContactUsController');
 });
