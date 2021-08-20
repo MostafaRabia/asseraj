@@ -50,7 +50,7 @@ class ContactUsFromUserController extends Controller
      */
     public function update(ContactUsFromUserRequest $request, ContactUs $us)
     {
-        $us->update($request->validated());
+        $us->update($request->all());
     }
 
     /**
