@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('logout', 'LogoutController@logout')->middleware('auth:sanctum');
 // Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware('throttle:activate')
 ;
 
@@ -24,17 +23,23 @@ Route::post('login', 'LoginController');
 // Route::post('/reset/password', 'ResetPasswordController');
 // Route::post('/email/resend/verification', 'ResendVerificationController')->middleware('auth:sanctum')->name('verification.send');
 
-Route::get('profile', 'ShowProfileController')->middleware('auth:sanctum');
-Route::put('profile', 'EditProfileController')->middleware('auth:sanctum');
-
-Route::put('end/room/{room}','EndRoomController')->middleware('auth:sanctum');
-
 Route::post('contact/us','ContactUsController')->middleware('throttle:contact-us');
 
 Route::get('index','GetIndexPageController');
 
 Route::get('teachers','GetTeachersController');
 
-Route::put('update/last/seen','UpdateLastSeenController')->middleware('auth:sanctum');
+Route::group(['middleware'=>['auth:sanctum']],function(){
+    Route::get('logout', 'LogoutController@logout');
+    
+    Route::get('profile', 'ShowProfileController');
+    Route::put('profile', 'EditProfileController');
 
-Route::get('permissions','GetRolesAndPermissions')->middleware('auth:sanctum');
+    Route::put('end/room/{room}','EndRoomController');
+
+    Route::put('update/last/seen','UpdateLastSeenController');
+
+    Route::get('permissions','GetRolesAndPermissions');
+
+    Route::apiResource('user/contact/us','ContactUsFromUserController');
+});

@@ -9,10 +9,15 @@ class ContactUs extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $casts = [
         'email' => 'encrypted',
         'is_showed' => 'boolean',
     ];
 
-    protected $guarded = [];
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'model')->with(['user:first_name,last_name,image,id']);
+    }
 }
