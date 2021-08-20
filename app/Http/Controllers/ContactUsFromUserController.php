@@ -26,7 +26,7 @@ class ContactUsFromUserController extends Controller
      */
     public function store(ContactUsFromUserRequest $request)
     {
-        ContactUs::create($request->validated());
+        ContactUs::create($request->all());
     }
 
     /**
