@@ -19,6 +19,7 @@ class CommentToContactUsController extends Controller
             'comment' => links_newlines_text($request->comment),
             'user_id' => $request->user()->id,
         ]);
+        $us->update(['is_showed'=>0]);
 
         return $comment;
     }
