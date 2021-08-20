@@ -48,15 +48,14 @@ class RouteServiceProvider extends ServiceProvider
             ;
 
             $names = ['admin', 'user', 'teacher'];
-            for ($i = 0; $i < count($names); ++$i) {
-                $roles = 'admin' === $names[$i] ? 'admin|supervisor' : $names[$i];
+            foreach($names as $name){
+                $roles = 'admin' === $name ? 'admin|supervisor' : $name;
 
-                Route::prefix($names[$i])
-                    ->middleware(['auth:sanctum', 'role:'.$roles, 'throttle:'.$names[$i], $names[$i], 'verified'])
-                    ->namespace($this->namespace.'\\'.ucfirst($names[$i]))
-                    ->as($names[$i].'.')
-                    ->group(base_path('routes/'.$names[$i].'.php'))
-                ;
+                Route::prefix($name)
+                    ->middleware(['auth:sanctum', 'role:'.$roles, 'throttle:'.$name, $name, 'verified', \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class])
+                    ->namespace($this->namespace.'\\'.ucfirst($name))
+                    ->as($name.'.')
+                    ->group(base_path('routes/'.$name.'.php'));
             }
         });
     }
@@ -71,15 +70,15 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('user', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id);
+            return Limit::perMinute(100)->by(optional($request->user())->id);
         });
 
         RateLimiter::for('teacher', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id);
+            return Limit::perMinute(100)->by(optional($request->user())->id);
         });
 
         RateLimiter::for('admin', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id);
+            return Limit::perMinute(100)->by(optional($request->user())->id);
         });
 
         RateLimiter::for('contact-us', function (Request $request) {
