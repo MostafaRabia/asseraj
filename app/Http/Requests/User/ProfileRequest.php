@@ -36,6 +36,7 @@ class ProfileRequest extends FormRequest
             'google' => 'nullable|string',
             'image' => 'nullable|image',
             'password' => 'nullable',
+            'how_much_save' => 'nullable',
         ] + $rules->rules();
     }
 
