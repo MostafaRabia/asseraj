@@ -53,6 +53,7 @@ class TransferMoneyController extends Controller
 
         if ($request->is_done == 1){
             User::where('id',$money->user_id)->decrement('money',$money->price);
+            User::where('id',$money->user_id)->decrement('minutes',$money->minutes);
         }
 
         $money->update($update);

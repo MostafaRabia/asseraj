@@ -16,6 +16,6 @@ class RequestMoneyController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return TransferMoney::updateOrCreate(['user_id'=>$request->user()->id,'is_done'=>0],['price'=>$request->user()->money]);
+        return TransferMoney::updateOrCreate(['user_id'=>$request->user()->id,'is_done'=>0],['price'=>$request->user()->money, 'minutes'=>$request->user()->minutes]);
     }
 }
