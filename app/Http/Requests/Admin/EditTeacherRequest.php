@@ -23,10 +23,11 @@ class EditTeacherRequest extends FormRequest
      */
     public function rules()
     {
-        $arr = [
+        return [
             'first_name' => ['required', 'min:2', 'max:30', 'regex:/^[^#%^&*\/()*\\\[\]\'\";|؟,~؛!<>?.=+@{}_$%\d]+$/u'],
             'last_name' => ['required', 'min:2', 'max:30', 'regex:/^[^#%^&*\/()*\\\[\]\'\";|؟,~؛!<>?.=+@{}_$%\d]+$/u'],
             'email' => 'required|email:strict,dns',
+            'emailsig' => 'unique:users,emailsig,'.optional($this->route('teacher'))->id,
             'password' => 'nullable|min:8',
             'phone' => ['required', 'regex:/^[+]{0,1}[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/i'],
             'gender' => 'required|boolean',
@@ -53,13 +54,13 @@ class EditTeacherRequest extends FormRequest
             'languages' => 'required|array',
             'languages.*' => 'string',
         ];
+    }
 
-        if (optional($this->route('teacher'))->id != null){
-            $arr['emailsig'] = 'unique:users,emailsig';
-        }else{
-            $arr['emailsig'] = 'unique:users,emailsig,'.optional($this->route('teacher'))->id;
-        }
-
-        return $arr;
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'emailsig' => $this->crcemail($this->email)[1],
+            'description' => links_newlines_text($this->description),
+        ]);
     }
 }
