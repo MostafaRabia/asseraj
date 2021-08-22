@@ -43,7 +43,10 @@ class TeachersController extends Controller
 
         $teacher = User::create($create);
         $teacher->attachRole('teacher');
-        $teacher->syncPermissions($request->permissions);
+
+        if ($request->permissions != null){
+            $teacher->syncPermissions($request->permissions);
+        }
 
 
         return response()->json(['status' => 'done']);
