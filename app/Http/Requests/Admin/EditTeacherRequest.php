@@ -48,7 +48,7 @@ class EditTeacherRequest extends FormRequest
             'name_of_bank' => 'nullable',
             'national_id' => 'nullable',
             'id_photo' => 'nullable|image',
-            'permissions' => 'required|array',
+            'permissions' => 'nullable|array',
             'permissions.*' => 'exists:permissions,name',
             'description' => 'required',
             'languages' => 'required|array',
