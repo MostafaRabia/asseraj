@@ -54,8 +54,6 @@ class EditTeacherRequest extends FormRequest
             'languages.*' => 'string',
         ];
 
-        // 'emailsig' => 'unique:users,emailsig,'.optional($this->route('teacher'))->id,
-
         if (optional($this->route('teacher'))->id != null){
             $arr['emailsig'] = 'unique:users,emailsig';
         }else{
