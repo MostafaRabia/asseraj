@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Traits\CrcemailTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditTeacherRequest extends FormRequest
 {
+    use CrcemailTrait;
+
     /**
      * Determine if the user is authorized to make this request.
      *
