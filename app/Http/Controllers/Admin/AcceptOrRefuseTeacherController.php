@@ -18,7 +18,7 @@ class AcceptOrRefuseTeacherController extends Controller
     {
         if ($request->accept == 1){
             $user->attachRole('teacher');
-            $user->update(['is_available'=>1]);
+            $user->update(['is_activated'=>1]);
         }else{
             $user->delete();
         }
