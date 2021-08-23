@@ -21,15 +21,35 @@ class RegisterTeacherController extends Controller
         $create['ip'] = $r->ip();
         $create['is_activated'] = 0;
 
-        User::create($create);
+        $created = User::create($create);
         // event(new Registered($created));
+        
+        $arr = [
+            'first_name' => 'الاسم الأول',
+            'last_name' => 'الاسم الأخير',
+            'email' => 'البريد الإلكتروني',
+            'phone' => 'رقم الهاتف',
+            'gender' => 'الجنس',
+            'age' => 'السن',
+            'country' => 'البلد',
+            'state' => 'المحافظة',
+            'city' => 'المدينة',
+            'section' => 'القسم',
+            'reads_save' => 'قراءات التحفيظ',
+            'information' => 'معلومات',
+            'languages' => 'اللغة',
+        ];
+        foreach($arr as $key=>$value){
+            $data[$value] = $r->{$key};
+        }        
 
         ContactUs::create([
             'name' => $create['first_name'].' '.$create['last_name'],
             'email' => $create['email'],
             'phone' => $create['phone'],
             'subject' => 'تسجيل معلم جديد',
-            'message' => 'تسجيل معلم جديد، انظر المعلمين.',
+            'message' => json_encode($data),
+            'user_id' => $created->id,
         ]);
 
         return response()->json(['status' => 'done']);
