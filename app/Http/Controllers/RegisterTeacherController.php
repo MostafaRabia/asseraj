@@ -49,7 +49,6 @@ class RegisterTeacherController extends Controller
             'phone' => $create['phone'],
             'subject' => 'تسجيل معلم جديد',
             'message' => json_encode($data),
-            'user_id' => $created->id,
         ]);
 
         return response()->json(['status' => 'done']);
