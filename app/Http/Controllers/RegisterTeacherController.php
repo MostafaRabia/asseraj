@@ -48,7 +48,8 @@ class RegisterTeacherController extends Controller
             'email' => $create['email'],
             'phone' => $create['phone'],
             'subject' => 'تسجيل معلم جديد',
-            'message' => json_encode($data),
+            'message' => 'تسجيل معلم جديد',
+            'data' => $data,
         ]);
 
         return response()->json(['status' => 'done']);

@@ -14,6 +14,7 @@ class ContactUs extends Model
     protected $casts = [
         'email' => 'encrypted',
         'is_showed' => 'boolean',
+        'data' => 'array',
     ];
 
     public function comments()
