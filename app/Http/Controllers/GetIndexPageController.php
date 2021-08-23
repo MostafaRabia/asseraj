@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutUs;
 use App\Models\Record;
 use App\Models\Slide;
+use App\Models\WebsiteSetting;
 use Illuminate\Http\Request;
 
 class GetIndexPageController extends Controller
@@ -24,6 +25,7 @@ class GetIndexPageController extends Controller
             'slides' => $slides,
             'records' => $records,
             'about_us' => AboutUs::first(),
+            'website_settings' => WebsiteSetting::first(),
         ]);
     }
 }
