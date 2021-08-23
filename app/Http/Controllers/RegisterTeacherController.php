@@ -27,17 +27,17 @@ class RegisterTeacherController extends Controller
         $arr = [
             'first_name' => 'الاسم الأول',
             'last_name' => 'الاسم الأخير',
-            'email' => 'البريد الإلكتروني',
-            'phone' => 'رقم الهاتف',
-            'gender' => 'الجنس',
-            'age' => 'السن',
-            'country' => 'البلد',
+            'age' => 'العمر',
+            'languages' => 'اللغة',
+            'gender' => 'النوع',
+            'country' => 'الدولة',
             'state' => 'المحافظة',
             'city' => 'المدينة',
+            'email' => 'البريد الإلكتروني',
+            'phone' => 'رقم الموبايل',
             'section' => 'القسم',
-            'reads_save' => 'قراءات التحفيظ',
+            'reads_save' => 'القراءة / الرواية',
             'information' => 'معلومات',
-            'languages' => 'اللغة',
         ];
         foreach($arr as $key=>$value){
             $data[$value] = $r->{$key};
