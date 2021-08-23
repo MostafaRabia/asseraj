@@ -41,7 +41,8 @@ class RegisterTeacherController extends Controller
         ];
         foreach($arr as $key=>$value){
             $data[$value] = $r->{$key};
-        }        
+        }
+        $data['الرقم التسلسلي'] = $created->id;
 
         ContactUs::create([
             'name' => $create['first_name'].' '.$create['last_name'],
