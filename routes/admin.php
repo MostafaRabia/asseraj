@@ -12,6 +12,8 @@ Route::group(['middleware'=>[$exp.',outer_pages']],function(){
     Route::apiResource('records','RecordsController');
 
     Route::apiResource('slides','SlidesController');
+
+    Route::apiResource('website/setting','WebsiteSettingController');
 });
 
 Route::group(['middleware'=>[$exp.',contact_us'],'as'=>'contact'],function(){
