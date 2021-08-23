@@ -24,7 +24,7 @@ class WebsiteSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'index_video' => 'mimes:m4a',
+            'index_video' => 'mimes:mp4',
         ];
     }
 }
