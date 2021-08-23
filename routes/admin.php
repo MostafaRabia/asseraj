@@ -19,7 +19,7 @@ Route::group(['middleware'=>[$exp.',contact_us'],'as'=>'contact'],function(){
 
     Route::put('showed/contact/{us}','UpdateContactUsToShowedController');
 
-    Route::put('accept/user/{user}','AcceptOrRefuseTeacherController');
+    Route::put('accept/user/{user}','AcceptOrRefuseTeacherController')->name('accept.user');
 });
 
 Route::group(['middleware'=>[$exp.',transfer_money']],function(){
