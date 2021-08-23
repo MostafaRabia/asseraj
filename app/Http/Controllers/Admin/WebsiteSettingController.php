@@ -32,6 +32,10 @@ class WebsiteSettingController extends Controller
             'index_video'
         ];
 
+        foreach(WebsiteSetting::first()->data as $key=>$value){
+            $data[$key] = $value;
+        }
+
         foreach ($arr as $input) {
             if (strpos($input,'video') !== false){
                 if ($request->hasFile($input)){
@@ -39,7 +43,7 @@ class WebsiteSettingController extends Controller
                 }
             }else{
                 if ($request->has($input)){
-                    $data['data'][$input] = $request->{$input};
+                    $data['data'][$input] = links_newlines_text($request->{$input});
                 }
             }
         }
