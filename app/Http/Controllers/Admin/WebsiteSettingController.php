@@ -33,7 +33,7 @@ class WebsiteSettingController extends Controller
         ];
 
         foreach(WebsiteSetting::first()->data as $key=>$value){
-            $data[$key] = $value;
+            $data['data'][$key] = $value;
         }
 
         foreach ($arr as $input) {
