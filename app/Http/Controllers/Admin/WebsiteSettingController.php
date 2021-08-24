@@ -29,7 +29,8 @@ class WebsiteSettingController extends Controller
     {
         $arr = [
             'terms',
-            'index_video'
+            'index_video',
+            'vc_number',
         ];
 
         foreach(WebsiteSetting::first()->data as $key=>$value){
