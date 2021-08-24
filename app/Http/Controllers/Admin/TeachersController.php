@@ -20,8 +20,8 @@ class TeachersController extends Controller
         $user = new User();
         $user = $user->select(['id', 'first_name', 'last_name', 'minutes'])->whereRoleIs('teacher');
 
-        if ($request->query != null){
-            $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->query."%'");
+        if ($request->input('query') != null){
+            $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->input('query')."%'");
         }
 
         return $user->paginate(10);
