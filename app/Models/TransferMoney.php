@@ -18,7 +18,7 @@ class TransferMoney extends Model
         return Carbon::parse($this->attributes['created_at'])->timezone(optional(auth()->user())->timezone)->format('j/n/Y g:i A');
     }
 
-    public function getDoneAtAttribute()
+    public function getDoneDateAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])->timezone(optional(auth()->user())->timezone)->format('j/n/Y');
     }

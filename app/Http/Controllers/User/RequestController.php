@@ -21,6 +21,8 @@ class RequestController extends Controller
         $language = $request->user()->languages[0];
         if ($request->type==="check"){
             $read = $request->user()->reads_save[0];
+        }else{
+            $read = $request->read;
         }
 
         $created = ModelsRequest::create(array_merge(['user_id' => auth()->user()->id, 'read'=>$read, 'languages'=>$language], $request->all()));
