@@ -15,11 +15,16 @@ class SuperVisorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return User::select([
-            'first_name', 'last_name', 'id', 'email'
-        ])->whereRoleIs('supervisor')->with('permissions')->get();
+        $user = new User();
+        $user = $user->select(['id', 'first_name', 'last_name', 'email'])->whereRoleIs('supervisor')->with('permissions');
+
+        if ($request->input('query') != null){
+            $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->input('query')."%'");
+        }
+
+        return $user->paginate(10);
     }
 
     /**
