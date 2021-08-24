@@ -16,18 +16,20 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware('throttle:activate')
 ;
 
-Route::post('register', 'RegisterController');
-Route::post('register/teacher', 'RegisterTeacherController');
-Route::post('login', 'LoginController');
+Route::group(['middleware'=>['web']],function(){
+    Route::get('index','GetIndexPageController');
+    Route::get('teachers','GetTeachersController');
+
+    Route::post('register', 'RegisterController');
+    Route::post('register/teacher', 'RegisterTeacherController');
+    Route::post('login', 'LoginController');
+});
+
 // Route::post('/send/password', 'SendResetPasswordController')->middleware('throttle:reset-password');
 // Route::post('/reset/password', 'ResetPasswordController');
 // Route::post('/email/resend/verification', 'ResendVerificationController')->middleware('auth:sanctum')->name('verification.send');
 
 Route::post('contact/us','ContactUsController')->middleware('throttle:contact-us');
-
-Route::get('index','GetIndexPageController');
-
-Route::get('teachers','GetTeachersController');
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::get('logout', 'LogoutController@logout');
