@@ -14,9 +14,21 @@ class VCController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Payment::where('type','vf cash')->with('user:id,first_name,last_name')->paginate(10);
+        $payments = new Payment();
+        $payments = $payments->where('type','vf cash')->with('user:id,first_name,last_name');
+        $search = $request->input('query');
+
+        if ($search != null){
+            $payments->where(function($q) use ($search){
+                $q->whereHas('user',function($q) use ($search){
+                    $q->whereRaw("concat(first_name, ' ', last_name) like '%".$search."%'");
+                })->orWhere('invoice_id','LIKE',$search);
+            });
+        }
+
+        return $payments->paginate(10);
     }
 
     /**
