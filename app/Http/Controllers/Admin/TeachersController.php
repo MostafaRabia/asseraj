@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EditTeacherRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TeachersController extends Controller
@@ -14,9 +15,16 @@ class TeachersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return User::select(['id', 'first_name', 'last_name', 'minutes'])->whereRoleIs('teacher')->paginate(10);
+        $user = new User();
+        $user = $user->select(['id', 'first_name', 'last_name', 'minutes'])->whereRoleIs('teacher');
+
+        if ($request->query != null){
+            $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->query."%'");
+        }
+
+        return $user->paginate(10);
     }
 
     /**
