@@ -14,9 +14,16 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return User::select(['id', 'first_name', 'last_name'])->whereRoleIs('user')->paginate(10);
+        $user = new User();
+        $user = $user->select(['id', 'first_name', 'last_name'])->whereRoleIs('user');
+
+        if ($request->input('query') != null){
+            $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->input('query')."%'");
+        }
+
+        return $user->paginate(10);
     }
 
     /**
