@@ -11,10 +11,17 @@ class TransferMoney extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        'created_at' => 'datetime:j/n/Y g:i A',
-        'done_date' => 'datetime:j/n/Y',
-    ];
+    protected $appends = ['created_at','done_date'];
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->timezone(optional(auth()->user())->timezone)->format('j/n/Y g:i A');
+    }
+
+    public function getDoneAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->timezone(optional(auth()->user())->timezone)->format('j/n/Y');
+    }
 
     public function user()
     {
