@@ -16,7 +16,7 @@ class GetLastTeachersController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $rooms = Room::select(['id','teacher_id'])->with(['teacher'=>function($q){
+        $rooms = Room::select(['id','teacher_id','created_at'])->with(['teacher'=>function($q){
             $q->select(['id','first_name','last_name','image','is_online'])->orderBy('is_online','desc');
         }])->where('student_id',$request->user()->id)->where('status','end')->latest()->take(20)->get();
 
