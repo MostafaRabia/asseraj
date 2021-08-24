@@ -66,7 +66,7 @@ class VCController extends Controller
         $cash->update(['status'=>$request->status,'price'=>$request->price]);
 
         if ($request->status==="accepted"){
-            User::where('id',$cash->user_id)->update(['minutes'=>$cash->minutes]);
+            User::where('id',$cash->user_id)->increment('minutes', $cash->minutes);
         }
     }
 
