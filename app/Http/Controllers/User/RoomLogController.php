@@ -15,6 +15,6 @@ class RoomLogController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Room::where('student_id', auth()->user()->id)->with('teacher:id,first_name,last_name')->paginate(7);
+        return Room::where('student_id', auth()->user()->id)->with('teacher:id,first_name,last_name')->orderBy('id','desc')->paginate(7);
     }
 }

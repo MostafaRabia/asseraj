@@ -26,7 +26,7 @@ class TransferMoneyController extends Controller
             });
         }
 
-        return $payments->paginate(10);
+        return $payments->orderBy('id','desc')->paginate(10);
     }
 
     /**

@@ -15,6 +15,6 @@ class PaymentLogController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Payment::where('user_id',$request->user_id)->paginate(7);
+        return Payment::where('user_id',$request->user_id)->orderBy('id','desc')->paginate(7);
     }
 }

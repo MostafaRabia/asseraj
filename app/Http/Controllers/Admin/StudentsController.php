@@ -23,7 +23,7 @@ class StudentsController extends Controller
             $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->input('query')."%'");
         }
 
-        return $user->paginate(10);
+        return $user->orderBy('id','desc')->paginate(10);
     }
 
     /**

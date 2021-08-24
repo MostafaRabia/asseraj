@@ -19,6 +19,6 @@ class RoomLogController extends Controller
             'student' => 'student_id'
         ];
 
-        return Room::where($arr[$request->type],$request->user_id)->with(['student:id,first_name,last_name','teacher:id,first_name,last_name'])->paginate(7);
+        return Room::where($arr[$request->type],$request->user_id)->with(['student:id,first_name,last_name','teacher:id,first_name,last_name'])->orderBy('id','desc')->paginate(7);
     }
 }

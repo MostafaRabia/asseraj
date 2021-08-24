@@ -15,6 +15,6 @@ class GetContactUsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return ContactUs::paginate(10);
+        return ContactUs::orderBy('id','desc')->paginate(10);
     }
 }

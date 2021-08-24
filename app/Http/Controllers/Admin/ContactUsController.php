@@ -15,7 +15,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        return ContactUs::paginate(10);
+        return ContactUs::orderBy('id','desc')->paginate(10);
     }
 
     /**

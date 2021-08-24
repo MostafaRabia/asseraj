@@ -24,7 +24,7 @@ class SuperVisorController extends Controller
             $user->whereRaw("concat(first_name, ' ', last_name) like '%".$request->input('query')."%'");
         }
 
-        return $user->get();
+        return $user->orderBy('id','desc')->get();
     }
 
     /**
