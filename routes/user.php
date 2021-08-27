@@ -19,3 +19,4 @@ Route::delete('request/{request}','DeleteRequestController');
 Route::get('last/teachers','GetLastTeachersController');
 
 Route::post('payment/paypal','PayWithPaypalController');
+Route::put('check/paypal','CheckPaypalController');
