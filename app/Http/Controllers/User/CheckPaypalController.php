@@ -36,17 +36,20 @@ class CheckPaypalController extends Controller
         $cart = $pay->data;
 
         $result = $paypalModule->doExpressCheckoutPayment($cart, $token, $response['PAYERID']);
+        \Log::info($result);
 
         if (! in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
             $pay->update(['status' => 'cancelled']);
 
             return response()->json(['status' => 'Something happend.'], 500);
         }
+
         if (in_array(strtoupper($result['PAYMENTINFO_0_PAYMENTSTATUS']), ['COMPLETED', 'COMPLETED_FUNDS_HELD'])) {
             $pay->update(['status' => 'accepted']);
 
             return $this->paid($pay);
         }
+        
         $pay->update(['status' => 'cancelled']);
 
         return response()->json(['status' => 'Something happend.'], 500);
