@@ -13,6 +13,10 @@ class Payment extends Model
 
     protected $appends = ['created_at'];
 
+    protected $casts = [
+        'data' => 'array',
+    ];
+
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])->timezone(optional(auth()->user())->timezone)->format('j/n/Y g:i A');
