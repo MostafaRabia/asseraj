@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Traits\UserPaidSuccessfullyTrait;
 use Illuminate\Http\Request;
