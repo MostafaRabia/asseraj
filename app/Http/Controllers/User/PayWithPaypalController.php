@@ -45,7 +45,7 @@ class PayWithPaypalController extends Controller
         $res = $paypalModule->setExpressCheckout($data);
 
         if (in_array(strtoupper($res['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            Payment::create(array_merge($request->all, [
+            Payment::create(array_merge($request->all(), [
                 'invoice_id' => $res['TOKEN'],
                 'price' => $plan->price,
                 'minutes' => $plan->minutes,
