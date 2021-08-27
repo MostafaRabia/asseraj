@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\PayWithPaypalController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('request', 'RequestController');
@@ -17,3 +18,5 @@ Route::get('plans','GetPlansController');
 Route::delete('request/{request}','DeleteRequestController');
 
 Route::get('last/teachers','GetLastTeachersController');
+
+Route::post('payment/paypal','PayWithPaypalController');

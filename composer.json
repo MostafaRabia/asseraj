@@ -20,7 +20,8 @@
         "meilisearch/meilisearch-php": "^0.18.0",
         "santigarcor/laratrust": "^6.3",
         "spatie/laravel-backup": "^6.16",
-        "twilio/sdk": "^6.28"
+        "twilio/sdk": "^6.28",
+        "srmklive/paypal": "~1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
