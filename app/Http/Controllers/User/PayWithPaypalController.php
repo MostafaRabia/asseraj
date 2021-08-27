@@ -28,9 +28,9 @@ class PayWithPaypalController extends Controller
 
         $data['items'] = [
             [
-                'name' => $plan->minutes,
+                'name' => 'شراء '.$plan->minutes.' دقيقة في السراج المنير',
                 'price' => $total,
-                'desc' => $plan->minutes,
+                'desc' => 'شراء '.$plan->minutes.' دقيقة في السراج المنير',
                 'qty' => 1,
             ],
         ];
