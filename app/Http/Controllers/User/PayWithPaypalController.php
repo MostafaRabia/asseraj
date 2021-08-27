@@ -23,14 +23,14 @@ class PayWithPaypalController extends Controller
      */
     public function __invoke(PayWithPaypalRequest $request)
     {
-        $plan = Plan::select(['minutes','price','name'])->find($request->plan_id);
+        $plan = Plan::select(['minutes','price'])->find($request->plan_id);
         $total = number_format($this->getCurrency('EGP','USD') * $plan->price, 2);
 
         $data['items'] = [
             [
-                'name' => $plan->name,
+                'name' => $plan->minutes,
                 'price' => $total,
-                'desc' => $plan->name,
+                'desc' => $plan->minutes,
                 'qty' => 1,
             ],
         ];
@@ -49,6 +49,7 @@ class PayWithPaypalController extends Controller
                 'invoice_id' => $res['TOKEN'],
                 'price' => $plan->price,
                 'minutes' => $plan->minutes,
+                'data' => $data,
             ]));
             return response()->json([
                 'link' => $res['paypal_link'],
