@@ -27,6 +27,7 @@ class WebsiteSettingController extends Controller
      */
     public function store(WebsiteSettingRequest $request)
     {
+        \Log::info($request->all());
         $arr = [
             'terms',
             'index_video',
