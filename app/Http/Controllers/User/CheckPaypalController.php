@@ -37,6 +37,7 @@ class CheckPaypalController extends Controller
 
         $result = $paypalModule->doExpressCheckoutPayment($cart, $token, $response['PAYERID']);
         \Log::info($result);
+        \Log::info($response);
 
         if (! in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
             $pay->update(['status' => 'cancelled']);
