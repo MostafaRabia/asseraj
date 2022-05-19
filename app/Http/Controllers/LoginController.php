@@ -40,6 +40,7 @@ class LoginController extends Controller
             'image' => $user->image,
             'id' => $user->id,
             'token' => $user->createToken('login')->plainTextToken,
+            'is_activated' => $user->is_activated,
         ];
 
         // $r->session()->regenerate();
