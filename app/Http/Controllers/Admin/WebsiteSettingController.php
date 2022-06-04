@@ -33,6 +33,11 @@ class WebsiteSettingController extends Controller
             'vc_number',
             'about_qiraat',
             'about_tahfiiz',
+            'facebook',
+            'twitter',
+            'youtube',
+            'instgram',
+            'telegram'
         ];
 
         foreach(WebsiteSetting::first()->data ?? [] as $key=>$value){
