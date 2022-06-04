@@ -25,11 +25,13 @@ Route::group(['middleware'=>[$exp.',contact_us'],'as'=>'contact'],function(){
 });
 
 Route::group(['middleware'=>[$exp.',transfer_money']],function(){
-    Route::apiResource('payments','PaymentsController')->except(['show']);
+    Route::get('payments','PaymentsController');
 
     Route::apiResource('transfer/money','TransferMoneyController');
 
     Route::apiResource('vf/cash','VCController');
+    
+    Route::apiResource('/plans','PlansController');
 });
 
 Route::apiResource('students','StudentsController')->middleware($exp.',students');
