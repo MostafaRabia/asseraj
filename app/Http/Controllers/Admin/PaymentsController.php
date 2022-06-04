@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PaymentsRequest;
 use App\Models\Payment;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
         $payments = new Payment();
         $payments = $payments->with('user:id,first_name,last_name');
@@ -28,5 +25,24 @@ class PaymentsController extends Controller
         }
 
         return $payments->orderBy('id','desc')->paginate(10);
+    }
+
+    public function store(PaymentsRequest $request)
+    {
+        return Plan::create($request->safe()->toArray());
+    }
+
+    public function update(PaymentsRequest $request, Plan $plan)
+    {
+        $plan->update($request->safe()->toArray());
+
+        return $plan;
+    }
+
+    public function destroy(Plan $plan)
+    {
+        $plan->delete();
+
+        return $plan;
     }
 }

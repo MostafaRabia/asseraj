@@ -25,7 +25,7 @@ Route::group(['middleware'=>[$exp.',contact_us'],'as'=>'contact'],function(){
 });
 
 Route::group(['middleware'=>[$exp.',transfer_money']],function(){
-    Route::get('payments','PaymentsController');
+    Route::apiResource('payments','PaymentsController')->except(['show']);
 
     Route::apiResource('transfer/money','TransferMoneyController');
 
