@@ -36,7 +36,7 @@ class WebsiteSettingController extends Controller
             'facebook',
             'twitter',
             'youtube',
-            'instgram',
+            'instagram',
             'telegram'
         ];
 
