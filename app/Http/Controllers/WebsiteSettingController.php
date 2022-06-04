@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WebsiteSetting;
 use Illuminate\Http\Request;
 
 class WebsiteSettingController extends Controller
@@ -14,6 +15,6 @@ class WebsiteSettingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        return WebsiteSetting::first()->data;
     }
 }

@@ -31,6 +31,8 @@ class WebsiteSettingController extends Controller
             'terms',
             'index_video',
             'vc_number',
+            'about_qiraat',
+            'about_tahfiiz',
         ];
 
         foreach(WebsiteSetting::first()->data ?? [] as $key=>$value){
