@@ -65,5 +65,11 @@ class EditTeacherRequest extends FormRequest
             'emailsig' => $this->crcemail($this->email)[1],
             'description' => links_newlines_text($this->description),
         ]);
+    
+        if (!$this->hasFile('id_photo')) {
+            $this->merge([
+                'id_photo' => null,
+            ]);
+        }
     }
 }
